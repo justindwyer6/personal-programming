@@ -2,6 +2,9 @@ body {
     font-family: 'Open Sans', sans-serif;
     font-size: 0.75rem;
 }
+h1 {
+    text-align: center;
+}
 input {
     margin: 15px;
 }
@@ -27,12 +30,17 @@ div {
 .display-false {
     display: none;
 }
-.flex-wrap {
+.flex-wrap-center {
     display: flex;
-    align-items: center;
+    /* align-items: center; */
     justify-content: center;
 }
-.automated-test-form {
+.flex-wrap-start {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+.form-margin {
     margin-left: 10px;
 }
 .spacer {

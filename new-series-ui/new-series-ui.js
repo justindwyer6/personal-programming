@@ -14,7 +14,7 @@ var gitPullLine = document.querySelector("#git-pull-line");
 
 function seriesFill(){
     for(i=0; i < inputSeriesId.length; ++i) {
-        if(i === 1) {
+        if(inputSeriesId[i].id === "series-id-tars") {
             inputSeriesId[i].textContent = " id " + seriesId.value;
             if(seriesId.value === ""){
                 inputSeriesId[i].textContent = "";
