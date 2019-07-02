@@ -27,3 +27,14 @@ div {
 .display-false {
     display: none;
 }
+.flex-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.automated-test-form {
+    margin-left: 10px;
+}
+.spacer {
+    width: 15vw;
+}

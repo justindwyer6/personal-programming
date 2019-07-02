@@ -13,53 +13,62 @@
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i&display=swap" rel="stylesheet">
         <link rel="icon" href="https://api.getguru.com/files/view/f182d0a3-5c10-4f35-8837-ac33ad38fe9b">
     </head>
-    <body>
+    <body class="flex-wrap">
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-        <h2>Series/Cycle Details</h2>
-        <form>
-            Series ID: <input type="text" name="series-id" id="series-id" oninput="seriesFill()">
-            Branch(es): <input type="text" name="branches" id="branches"  oninput="branchFill()">
-            qTest Cycle ID: <input type="text" name="qtest-id" id="qtest-id"  oninput="cycleFill()">
-        </form>
-        <h2>Spin up Series</h2>
-        <div id="tars-input" class="click-copy" onclick="copyText(tarsInput)">create series<span class="input-series-id"></span> using qa-base<span id="tars-input-branch"></span></div>
-        <h2>Seed Series</h2>
-        <div id="seed-input" class="click-copy" onclick="copyText(seedInput)">
-            s <span class="input-series-id">###x</span> core<br>
-            sudo su - www-data<br>
-            cd php/api.443/<br>
-            composer drop:cloud<br>
-            composer create:cloud<br>
-            composer seed:cloud<br>
-            composer secseed files=generic,baseline,allrisknumbers,random_small,cash,sp500,veo<br>
-            composer blendseed<br>
-            exit<br>
-            exit<br>
-        </div>
-        <h2>Run Automated Tests</h2>
-        <div id="automated-tests-input">
-            <div id="automated-tests-input-1" class="click-copy" onclick="copyText(automatedTestsInput1)">
-                cd repos/test-service<br>
-                series <span class="input-series-id">###x</span><br>
-                sel-start<br>
-            </div>
-            Open a new terminal tab (command + t)<br>
-            <div id="automated-tests-input-2" class="click-copy" onclick="copyText(automatedTestsInput2)">
-                <span id="git-pull-line" class="display-true">git pull<br></span>
-                cd repos/test-service<br>
-                logcucumber <span id="parallel-tag" class="display-true">-p</span> <span id="rerun-tag" class="display-true">-r</span><span id="input-qtest-id"></span><br>
-            </div>
+        <div>
+            <h1>Series/Cycle Details</h1>
             <form>
-                Git pull: <input type="checkbox" name="git-pull" id="git-pull" oninput="changeDisplay(gitPullLine)" checked>
-                Parallel: <input type="checkbox" name="parallel" id="parallel" oninput="changeDisplay(parallelTag)" checked>
-                Rerun: <input type="checkbox" name="rerun" id="rerun" onclick="changeDisplay(rerunTag)" checked>
+                Series ID: <input type="text" name="series-id" id="series-id" oninput="seriesFill()">
+                Branch(es): <input type="text" name="branches" id="branches"  oninput="branchFill()">
             </form>
+            <h2>Spin up Series</h2>
+            <div id="tars-input" class="click-copy" onclick="copyText(this)">create series<span class="input-series-id"></span> using qa-base<span id="tars-input-branch"></span></div>
+            <h2>Seed Series</h2>
+            <div id="seed-input" class="click-copy" onclick="copyText(this)">
+                s <span class="input-series-id">###x</span> core<br>
+                sudo su - www-data<br>
+                cd php/api.443/<br>
+                composer drop:cloud<br>
+                composer create:cloud<br>
+                composer seed:cloud<br>
+                composer secseed files=generic,baseline,allrisknumbers,random_small,cash,sp500,veo<br>
+                composer blendseed<br>
+                exit<br>
+                exit<br>
+            </div>
         </div>
-        <h2>Internets</h2>
-        <a id="pro" target="_blank" href="">https://pro<span class="input-series-id"></span>.dev.riskalyze.com</a><br><br>
-        <a id="rap" target="_blank" href="">https://rap<span class="input-series-id"></span>.dev.riskalyze.com</a>
+        <div class="spacer"></div>
+        <div>
+            <h2>Run Automated Tests</h2>
+            <div id="automated-tests-input">
+                <div id="automated-tests-input-1" class="click-copy" onclick="copyText(this)">
+                    cd repos/test-service<br>
+                    series <span class="input-series-id">###x</span><br>
+                    sel-start<br>
+                </div>
+                Open a new terminal tab (command + t)
+                <div class="flex-wrap">
+                    <div id="automated-tests-input-2" class="click-copy" onclick="copyText(this)">
+                        <span id="git-pull-line" class="display-true">git pull<br></span>
+                        cd repos/test-service<br>
+                        logcucumber <span id="parallel-tag" class="display-true">-p</span> <span id="rerun-tag" class="display-true">-r</span><span id="input-qtest-id"></span><br>
+                    </div>
+                    <form class="automated-test-form">
+                        Git pull: <input type="checkbox" name="git-pull" id="git-pull" oninput="changeDisplay(gitPullLine)" checked>
+                        Parallel: <input type="checkbox" name="parallel" id="parallel" oninput="changeDisplay(parallelTag)" checked>
+                        Rerun: <input type="checkbox" name="rerun" id="rerun" onclick="changeDisplay(rerunTag)" checked>
+                        qTest Cycle ID: <input type="text" name="qtest-id" id="qtest-id"  oninput="cycleFill()">
+                    </form>
+                </div>
+            </div>
+            <h2>Internets</h2>
+            <a id="pro" target="_blank" href="">https://pro<span class="input-series-id"></span>.dev.riskalyze.com</a><br><br>
+            <a id="rap" target="_blank" href="">https://rap<span class="input-series-id"></span>.dev.riskalyze.com</a>
+            <h2>Handy Things</h2>
+            <p>Electronic Trader User ID: <span id="electronic-trader-id" class="click-copy" onclick="copyText(this)">2079227151</span></p>
+        </div>
         <script src="new-series-ui.js" type="text/javascript"></script>
         <script src="" async defer></script>
     </body>
