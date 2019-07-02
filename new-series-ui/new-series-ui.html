@@ -46,14 +46,15 @@
                 sel-start<br>
             </div>
             Open a new terminal tab (command + t)<br>
-            Do a git pull if necessary<br>
             <div id="automated-tests-input-2" class="click-copy" onclick="copyText(automatedTestsInput2)">
+                <span id="git-pull-line" class="display-true">git pull<br></span>
                 cd repos/test-service<br>
-                logcucumber <span id="parallel-tag" class="display-false">-p</span> <span id="rerun-tag" class="display-false">-r</span><span id="input-qtest-id"></span><br>
+                logcucumber <span id="parallel-tag" class="display-true">-p</span> <span id="rerun-tag" class="display-true">-r</span><span id="input-qtest-id"></span><br>
             </div>
             <form>
-                Parallel: <input type="checkbox" name="parallel" id="parallel" oninput="changeDisplay(parallelTag)">
-                Rerun: <input type="checkbox" name="rerun" id="rerun" onclick="changeDisplay(rerunTag)">
+                Git pull: <input type="checkbox" name="git-pull" id="git-pull" oninput="changeDisplay(gitPullLine)" checked>
+                Parallel: <input type="checkbox" name="parallel" id="parallel" oninput="changeDisplay(parallelTag)" checked>
+                Rerun: <input type="checkbox" name="rerun" id="rerun" onclick="changeDisplay(rerunTag)" checked>
             </form>
         </div>
         <h2>Internets</h2>
