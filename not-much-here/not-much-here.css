@@ -1,0 +1,18 @@
+body {
+
+}
+#dotbox {
+    display: none;
+    width: 150px;
+    border: 1px solid #000000;
+    border-radius: 5px;
+}
+.dotbox-items {
+    border-radius: 5px;
+    border-bottom: 1px solid #000000;
+    border-top: 1px solid #000000;
+    margin-bottom: -1px;
+}
+.dotbox-items {
+
+}
