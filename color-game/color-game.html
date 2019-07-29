@@ -15,14 +15,24 @@
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-        <div id="container"></div>
+        <h1 id="title">
+            The Great<br>
+            <span id="colorDisplay">RGB</span><br>
+            Color Game</h1>
+        <div id="stripe">
+            <button id="newGame">New Round</button>
+            <span id="message">Click, you fool.</span>
+            <button class="mode">Easy</button>
+            <button class="mode selected">Hard</button>
+        </div>
+        <div id="container">
             <div class="square"></div>
             <div class="square"></div>
             <div class="square"></div>
             <div class="square"></div>
             <div class="square"></div>
             <div class="square"></div>
-            <div class="square"></div>
-        <script src="" async defer></script>
+        </div>
+        <script type="text/javascript" src="color-game.js" async defer></script>
     </body>
 </html>

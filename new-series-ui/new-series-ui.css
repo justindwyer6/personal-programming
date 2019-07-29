@@ -46,3 +46,14 @@ div {
 .spacer {
     width: 15vw;
 }
+button {
+    position: fixed;
+    bottom: 0px;
+    right: 0px;
+}
+button > a {
+    color: #ffffff;
+}
+button:active > a {
+    color: #ffffff;
+}
