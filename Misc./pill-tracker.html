@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Pill Tracker</title>
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            body {
+                margin: 0 auto;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <form>
+            <h1>What pill are you taking?</h1>
+            <input type="radio" name="pill" value="ibuprofen" id="ibuprofen"> Ibuprofen<br>
+            <input type="radio" name="pill" value="norco" id="norco"> Norco
+            <p>Last pill taken: <span></span></p>
+        </form>
+        <script type="text/javascript" async defer>
+            var lastPillTaken;
+            $("#ibuprofen").change(recordTimestamp);
+            $("#norco").change(recordTimestamp);
+            function recordTimestamp(){
+                var timestamp = `${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}`;
+                var time = localStorage.setItem("timestamp", `${timestamp}`);
+                if($(this).val() === "ibuprofen") {lastPillTaken = localStorage.setItem("lastPillTaken", "Ibuprofen");}
+                if($(this).val() === "norco") {lastPillTaken = localStorage.setItem("lastPillTaken", "Norco");}
+                $("span").text(`${localStorage.getItem("lastPillTaken")} at ${localStorage.getItem("timestamp")}`);
+            }
+            $("span").text(`${localStorage.getItem("lastPillTaken")} at ${localStorage.getItem("timestamp")}`);
+            if(localStorage.getItem("lastPillTaken") === "Ibuprofen") {
+                $("#ibuprofen").attr("checked", "true");
+            }
+            else if(localStorage.getItem("lastPillTaken") === "Norco") {
+                $("#norco").attr("checked", "true");
+            }
+        </script>
+    </body>
+</html>
