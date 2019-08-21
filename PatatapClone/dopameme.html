@@ -29,7 +29,12 @@
             }
             function onFrame(event) {
                 for(var i = 0; i < shias.length; i++){
-                    shias[i].scale(0.91);
+                    shias[i].scale(0.9);
+                    shias[i].rotate(2 * i);
+                    if(shias[i].scaling === null) {
+                        shias[i].remove;
+                        shias.splice(i,1);
+                    }
                 }
             }
         </script>
