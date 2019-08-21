@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Dopameme</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="circles.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.1.2/howler.js" integrity="sha256-K6gwVUMyEPd4s9vtZXdCIPySi3r1WhzqpUAw4DR0G9I=" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="paper-full.js"></script>
+        <script type="text/paperscript" canvas="myCanvas">
+
+            var shias = [];
+            function onKeyDown(event) {
+                    var sound = new Howl({
+                        src: ['memeBytes/just-do-it.m4a']
+                      });
+                      sound.play();
+                    var maxPoint = new Point(view.size.width, view.size.height);
+                    var randomPoint = Point.random();
+                    var point = maxPoint * randomPoint;
+                    var shia = new Raster("shia");
+                    shia.position = point;
+                    shias.push(shia);
+            }
+            function onFrame(event) {
+                for(var i = 0; i < shias.length; i++){
+                    shias[i].scale(0.91);
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <img id="shia" src="https://www.stickpng.com/assets/images/58909b545236a4e0f6e2f975.png">
+        <canvas id="myCanvas" resize></canvas>
+        <script src="" async defer></script>
+    </body>
+</html>
