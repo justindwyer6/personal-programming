@@ -1,0 +1,23 @@
+<% include header %>
+<h1>Check out these posts</h1>
+<ul>
+
+<% for(post in posts) { %>
+    <li><h2><%= posts[post].title %></h2>
+        <ul>
+            <li>By: <%= posts[post].author %></li>
+        </ul>
+    </li>
+<% } %>
+
+<% posts.forEach((post) => { %>
+    <li><h2><%= post.title %></h2>
+        <ul>
+            <li>By: <%= post.author %></li>
+        </ul>
+    </li>
+<% }); %>
+
+</ul>
+
+<% include footer %>
