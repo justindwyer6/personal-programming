@@ -1,0 +1,16 @@
+{
+  "name": "yelpcamp",
+  "version": "1.0.0",
+  "description": "It's basically like the Uber of camping... Or the Yelp of camping, I guess. It's hip is what I'm getting at.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Justin Dwyer",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^2.7.1",
+    "express": "^4.17.1",
+    "nodemon": "^1.19.2"
+  }
+}

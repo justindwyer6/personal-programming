@@ -1,0 +1,11 @@
+<h1>Results for <em><%= query %></em></h1>
+<ul>
+<% data["Search"].forEach((movie) => { %>
+    <li><strong><%= movie["Title"]; %></strong> <span style="color: gray;"><%= movie["Year"]; %></span></li>
+<% }); %>
+</ul>
+<h3>Search Again</h3>
+<form action="/results" method="GET">
+    <input type="text" placeholder="Movie Title..." name="searchMovie">
+    <button type="submit">Search</button>
+</form>
