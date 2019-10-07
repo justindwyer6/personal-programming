@@ -1,0 +1,6 @@
+character_name = "Jimbob"
+character_age = "20"
+puts "Hi, my name #{character_name}."
+puts "I'm am #{character_age} years old."
+puts "You better take ol' #{character_name} to the store."
+puts "Else you'll be #{character_age} yerself."
