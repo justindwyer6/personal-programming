@@ -1,0 +1,31 @@
+i.spinner {
+    font-size: 2em;
+}
+
+.container.main {
+    margin-top: 7em;
+}
+
+.edit-options {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: baseline;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.left-margin {
+    margin-left: 5px !important;
+}
+
+.editable {
+    border-bottom: 1px dashed black !important;
+}
+
+.editable:hover {
+    opacity: 0.75;
+}
