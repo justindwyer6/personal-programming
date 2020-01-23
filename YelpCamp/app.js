@@ -3,34 +3,19 @@ const express    = require("express"),
       bodyParser = require("body-parser"),
       mongoose   = require("mongoose"),
       Campground = require("./models/campground"),
+      Comment = require("./models/comment"),
       seedDB     = require("./seeds")
 
-seedDB();
 mongoose.connect("mongodb://localhost:27017/yelp_camp", {useNewUrlParser: true, useUnifiedTopology: true});
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
-
-// Campground.create(
-//     {
-//         name: "Giant Gap Campground",
-//         image: "https://s3-media3.fl.yelpcdn.com/bphoto/457gaj8hIgzdEKWZIarf_A/o.jpg",
-//         description: "Everything your heart desires"
-//     },
-//     (err, campground) => {
-//         err ? console.log(err) : console.log(`Newly created campground: ${campground}`);
-//     });
+seedDB();
 
 app.get("/", (req, res) => {
     res.render("landing");
 });
 
-// const campgrounds = [
-//     {name: "Giant Gap Campground", image: "https://s3-media3.fl.yelpcdn.com/bphoto/457gaj8hIgzdEKWZIarf_A/o.jpg"},
-//     {name: "Wolf Creek Campground", image: "https://s3-media2.fl.yelpcdn.com/bphoto/DP1cU6yEAmLKRY34Sh8B8Q/o.jpg"},
-//     {name: "Dutch Flat RV Resort", image: "https://s3-media4.fl.yelpcdn.com/bphoto/35xqB-95HpiBaPYCfi4rrg/o.jpg"}
-// ];
-
-// INDEX – Show all campgrounds
+// INDEX – Show campgrounds
 app.get("/campgrounds", (req, res) => {
     // res.render("campgrounds", {campgrounds: campgrounds});
     Campground.find({}, (err, allCampgrounds) => {
@@ -60,8 +45,9 @@ app.get("/campgrounds/new", (req, res) => {
 // SHOW – Show info about one campground
 app.get("/campgrounds/:id", (req, res) => {
     // Find campground with provided ID
-    Campground.findById(req.params.id, (err, foundCampground) => {
+    Campground.findById(req.params.id).populate("comments").exec((err, foundCampground) => {
         // Render show template with that campground
+        console.log(foundCampground);
         err ? console.log(err) : res.render("show", {campground: foundCampground});
     });
 });
