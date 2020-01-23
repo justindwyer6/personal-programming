@@ -19,7 +19,7 @@ app.get("/", (req, res) => {
 app.get("/campgrounds", (req, res) => {
     // res.render("campgrounds", {campgrounds: campgrounds});
     Campground.find({}, (err, allCampgrounds) => {
-        err ? console.log(err) : res.render("index", {campgrounds: allCampgrounds});
+        err ? console.log(err) : res.render("campgrounds/index", {campgrounds: allCampgrounds});
     });
 });
 
@@ -39,7 +39,7 @@ app.post("/campgrounds", (req, res) => {
 
 // NEW – Show form to create a new campground
 app.get("/campgrounds/new", (req, res) => {
-    res.render("new.ejs");
+    res.render("campgrounds/new");
 });
 
 // SHOW – Show info about one campground
@@ -48,8 +48,16 @@ app.get("/campgrounds/:id", (req, res) => {
     Campground.findById(req.params.id).populate("comments").exec((err, foundCampground) => {
         // Render show template with that campground
         console.log(foundCampground);
-        err ? console.log(err) : res.render("show", {campground: foundCampground});
+        err ? console.log(err) : res.render("campgrounds/show", {campground: foundCampground});
     });
+});
+
+// ===============
+// COMMENTS ROUTES
+// ===============
+
+app.get("/campgrounds/:id/comments/new", (req, res) => {
+    res.render("comments/new");
 });
 
 const port = 3000;
