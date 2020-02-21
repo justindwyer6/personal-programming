@@ -24,18 +24,18 @@ async function seedDB(){
     try {
         await Comment.deleteMany({});
         await Campground.deleteMany({});
-        for(const seed of seeds) {
-            let campground = await Campground.create(seed);
-            let comment = await Comment.create(
-                {
-                    text: "You should see Oregon.",
-                    author: "Kevin Shmole"
-                }
-            );
-            campground.comments.push(comment);
-            campground.save();
-            console.log(`${seed.name} saved to the database.`);
-        }
+        // for(const seed of seeds) {
+        //     let campground = await Campground.create(seed);
+        //     let comment = await Comment.create(
+        //         {
+        //             text: "You should see Oregon.",
+        //             author: "Kevin Shmole"
+        //         }
+        //     );
+        //     campground.comments.push(comment);
+        //     campground.save();
+        //     console.log(`${seed.name} saved to the database.`);
+        // }
     } catch(err) {
         console.log(err);
     }

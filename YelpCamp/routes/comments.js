@@ -5,8 +5,8 @@ const express = require("express"),
 
 // NEW - Show form to add a comment to a campground
 router.get("/new", isLoggedIn, (req, res) => {
-  Campground.findById(req.params.id, (err, foundCampground) => {
-      err ? console.log(err) : res.render("comments/new", {campground: foundCampground});
+  Campground.findById(req.params.id, (err, campground) => {
+      err ? console.log(err) : res.render("comments/new", {campground: campground});
   });
 });
 
@@ -14,13 +14,16 @@ router.get("/new", isLoggedIn, (req, res) => {
 router.post("/", isLoggedIn, async (req, res) => {
   try {
       // Look up campground using ID
-      foundCampground = await Campground.findById(req.params.id);
-      newlyCreatedComment = await Comment.create(req.body.comment);
-      // Connect new comment to campground
-      await foundCampground.comments.push(newlyCreatedComment);
-      await foundCampground.save();
-      // Redirect to campground show page
-      res.redirect(`/campgrounds/${foundCampground._id}`);
+      campground = await Campground.findById(req.params.id);
+      comment = await Comment.create(req.body.comment);
+      // Associate user with comment
+      comment.author.id = await req.user._id;
+      comment.author.username = await req.user.username;
+      // Save comment
+      await comment.save();
+      await campground.comments.push(comment);
+      await campground.save();
+      res.redirect(`/campgrounds/${campground._id}`);
       }
   catch(err) {
       console.log(err);
