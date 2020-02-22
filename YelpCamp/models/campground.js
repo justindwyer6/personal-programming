@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const Comment = require('./comment');
 
 const campgroundSchema = new mongoose.Schema({
     name: String,
@@ -16,7 +17,19 @@ const campgroundSchema = new mongoose.Schema({
             type: mongoose.Schema.Types.ObjectId,
             ref: "Comment"
         }
-    ]
+    ],
+    seed: {
+        type: Boolean,
+        default: false
+    }
+});
+
+campgroundSchema.pre('deleteOne', async function() {
+    await Comment.deleteOne({
+        _id: {
+            $in: this.comments
+        }
+    });
 });
 
 module.exports = mongoose.model("Campground", campgroundSchema);

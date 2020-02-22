@@ -15,8 +15,14 @@
                 <div class="caption-full">
                     <h4 class="pull-right">$9.00/night</h4>
                     <h4><a href=""><%= campground.name %></a></h4>
-                <p class="pull-right">Submitted by: <%= campground.author.id == user.id ? "You" : campground.author.username%></p>
+                    <p class="pull-right">
+                        <em>Submitted by: <%= campground.author.username %></em>
+                    </p>
                     <p><%= campground.description %></p>
+                    <a class="btn btn-xs btn-warning" href="/campgrounds/<%= campground.id %>/edit">Edit</a>
+                    <form id="delete-form" action="/campgrounds/<%= campground.id %>?_method=DELETE" method="POST">
+                        <button class="btn btn-xs btn-danger">Delete</button>
+                    </form>
                 </div>
             </div>
             <div class="well">

@@ -8,6 +8,10 @@ const commentSchema = new mongoose.Schema({
             ref: "User"
         },
         username: String
+    },
+    seed: {
+        type: Boolean,
+        default: false
     }
 });
 
