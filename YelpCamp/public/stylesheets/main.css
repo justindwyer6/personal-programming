@@ -10,6 +10,6 @@
   padding: 9px;
 }
 
-form#delete-form {
+form.delete-form {
   display: inline;
 }

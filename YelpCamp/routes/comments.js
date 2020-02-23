@@ -44,13 +44,23 @@ router.get("/:comment_id/edit", checkCommentOwnership, async (req, res) => {
 });
 
 // UPDATE - Save edited comment to db
-router.put("/:comment_id/edit", checkCommentOwnership, async (req, res) => {
+router.put("/:comment_id", checkCommentOwnership, async (req, res) => {
     try {
         campground = await Campground.findById(req.params.id);
         comment = await Comment.findByIdAndUpdate(req.params.comment_id, req.body.comment);
         res.redirect(`/campgrounds/${campground._id}`);
     } catch(err) {
-        res.render("Comment couldn't be saved. /:");
+        res.send("Comment couldn't be saved. /:");
+    }
+});
+
+// DESTROY - Delete a comment
+router.delete("/:comment_id", checkCommentOwnership, async (req, res) => {
+    try {
+        await Comment.findByIdAndRemove(req.params.comment_id);
+        res.redirect(`/campgrounds/${req.params.id}`);
+    } catch {
+        res.send("Comment couldn't be deleted.");
     }
 });
 
