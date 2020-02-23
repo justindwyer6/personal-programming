@@ -75,6 +75,7 @@ function isLoggedIn(req, res, next){
     res.redirect("/login");
 }
 
+// Owner check middleware
 function checkCampgroundOwnership(req, res, next){
     (req.isAuthenticated())
     ? Campground.findById(req.params.id, (err, campground) => {
