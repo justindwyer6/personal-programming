@@ -35,23 +35,34 @@ router.post("/", middleware.isLoggedIn, async (req, res) => {
 // EDIT - Show a page to edit a comment
 router.get("/:comment_id/edit", middleware.checkCommentOwnership, async (req, res) => {
     try {
-        campground = await Campground.findById(req.params.id);
+        campground = await Campground.findById(req.params.id, (err, campground) => {
+            if(err || !campground){
+                req.flash("error", "No campground found, so no comment found. Sorry bout it!");
+                res.redirect("back");
+            }
+        });
         comment = await Comment.findById(req.params.comment_id);
         res.render("comments/edit", {comment: comment, campground: campground});
     } catch(err) {
-        console.log(err);
-        res.redirect(`/campgrounds/${campground._id}`);
+        req.flash("error", "No edit comment for you!");
+        campground ? res.redirect(`/campgrounds/${campground._id}`) : res.redirect("/campgrounds");
     }
 });
 
 // UPDATE - Save edited comment to db
 router.put("/:comment_id", middleware.checkCommentOwnership, async (req, res) => {
     try {
-        campground = await Campground.findById(req.params.id);
+        campground = await Campground.findById(req.params.id, (err, campground) => {
+            if(err || !campground){
+                req.flash("error", "No campground found, so no comment found. Sorry bout it!");
+                return res.redirect("back");
+            }
+        });
         comment = await Comment.findByIdAndUpdate(req.params.comment_id, req.body.comment);
         res.redirect(`/campgrounds/${campground._id}`);
     } catch(err) {
-        res.send("Comment couldn't be saved. /:");
+        req.flash("error", "No edit comment for you!");
+        campground ? res.redirect(`/campgrounds/${campground._id}`) : res.redirect("/campgrounds");
     }
 });
 
@@ -59,9 +70,11 @@ router.put("/:comment_id", middleware.checkCommentOwnership, async (req, res) =>
 router.delete("/:comment_id", middleware.checkCommentOwnership, async (req, res) => {
     try {
         await Comment.findByIdAndRemove(req.params.comment_id);
-        res.redirect(`/campgrounds/${req.params.id}`);
+        req.flash("success", "Comment deleted.");
+        return res.redirect(`/campgrounds/${req.params.id}`);
     } catch {
-        res.send("Comment couldn't be deleted.");
+        req.flash("error", "No delete comment for you!");
+        campground ? res.redirect(`/campgrounds/${campground._id}`) : res.redirect("/campgrounds");
     }
 });
 
