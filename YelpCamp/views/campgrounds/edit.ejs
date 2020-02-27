@@ -14,7 +14,10 @@
                 <div class="form-group">
                     <input class="form-control" type="text" name="campground[description]" placeholder="<%= campground.description %>" value="<%= campground.description %>">
                 </div>
-                    <button class="btn btn-lg btn-primary btn-block">Submit</button>
+                <div class="form-group">
+                    <input class="form-control" type="number" name="campground[price]" placeholder="How pricey is it?" value="<%= campground.description %>" min="0.00" step="0.01">
+                </div>
+                <button class="btn btn-lg btn-primary btn-block">Submit</button>
             </form>
             <a href="/campgrounds/<%= campground.id %>">Go Back</a>
         </div>
